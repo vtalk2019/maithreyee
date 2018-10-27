@@ -8,7 +8,7 @@ We are always surrounded by objects that has shapes (e.g Circle, Rectangle, Squa
 <img src="/images/ShapesLesson.png" alt="ShapeLesson"/>
 <img src="/images/ArchitecturalDiagram2.png" alt="Architecture"/>
 
-Legend for Flow Diagram:
+**Legend for Flow Diagram:**
 1. User Input: the user speaks into Alexa device(s)
 2. Sampled audio is sent to backend Alexa engine (client environment)
 3. Alexa Voice Engine recognizes utterances and translates to Alexa Skill Design Equations 
