@@ -8,6 +8,13 @@ We are always surrounded by objects that has shapes (e.g Circle, Rectangle, Squa
 <img src="/images/ShapesLesson.png" alt="ShapeLesson"/>
 <img src="/images/ArchitecturalDiagram2.png" alt="Architecture"/>
 
+Legend for Flow Diagram:
+1. User Input: the user speaks into Alexa device(s)
+2. Sampled audio is sent to backend Alexa engine (client environment)
+3. Alexa Voice Engine recognizes utterances and translates to Alexa Skill Design Equations 
+4. Backend Lambda functions notifies the push communication service to httpserver. 
+5. JS Client listening to push notification is woken up to process inbound message prior to html5 rendering
+
 ### Alexa Shape Interaction Model
 The image below indicates the common utterance equation that has to be followed to interact with Alexa devices like Echo which are located in the classroom. This is the core Man-Machine interface and foundation for user interaction that has to be followed.
 
