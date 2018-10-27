@@ -1,0 +1,99 @@
+{
+    "interactionModel": {
+        "languageModel": {
+            "invocationName": "isbn lesson",
+            "intents": [
+                {
+                    "name": "AMAZON.CancelIntent",
+                    "samples": []
+                },
+                {
+                    "name": "AMAZON.HelpIntent",
+                    "samples": []
+                },
+                {
+                    "name": "AMAZON.StopIntent",
+                    "samples": []
+                },
+                {
+                    "name": "EchoTalk",
+                    "slots": [
+                        {
+                            "name": "Color",
+                            "type": "AMAZON.Color"
+                        },
+                        {
+                            "name": "Number",
+                            "type": "AMAZON.NUMBER"
+                        },
+                        {
+                            "name": "Shapes",
+                            "type": "AlexaLHS_Shapes"
+                        },
+                        {
+                            "name": "Actions",
+                            "type": "AlexaLHS_Actions"
+                        }
+                    ],
+                    "samples": [
+                        "{Actions} ISBN {Number} Page {Number}",
+                        "{Actions} Lesson {Number} Problem {Number}",
+                        "{Actions} a {Shapes} in Quadrant {Number} with color {Color}"
+                    ]
+                }
+            ],
+            "types": [
+                {
+                    "name": "AlexaLHS_Shapes",
+                    "values": [
+                        {
+                            "name": {
+                                "value": "Triangle"
+                            }
+                        },
+                        {
+                            "name": {
+                                "value": "Circle"
+                            }
+                        }
+                    ]
+                },
+                {
+                    "name": "AlexaLHS_Actions",
+                    "values": [
+                        {
+                            "name": {
+                                "value": "Draw"
+                            }
+                        },
+                        {
+                            "name": {
+                                "value": "Erase"
+                            }
+                        },
+                        {
+                            "name": {
+                                "value": "Play"
+                            }
+                        },
+                        {
+                            "name": {
+                                "value": "Send"
+                            }
+                        },
+                        {
+                            "name": {
+                                "value": "Show"
+                            }
+                        },
+                        {
+                            "name": {
+                                "value": "Get"
+                            }
+                        }
+                    ]
+                }
+            ]
+        }
+    }
+}

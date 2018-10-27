@@ -1,0 +1,2 @@
+
+zip -r alexashape.zip .

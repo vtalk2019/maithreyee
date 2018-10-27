@@ -1,0 +1,559 @@
+<html>
+
+<head>
+</head>
+
+<bodyheight:100%; margin-bottom: 1px; >
+	<div id="topleftdiv">Lesson Tree</div>
+	<div id="bottomleftdiv">Notes/Slack Integrations</div>
+	<div id="bottomrightdiv">Equations</div>
+	<div id="toprightdiv"> Diagrams
+		<div id="basecanvasdiv">
+			<canvas id="Quadrant_1"> </canvas>
+			<canvas id="Quadrant_2"> </canvas>
+			<canvas id="Quadrant_3"> </canvas>
+			<canvas id="Quadrant_4"> </canvas>
+		</div>
+		<canvas id="toplayer">  </canvas>
+	</div>
+	</body>
+</html>
+
+<style>
+div#basecanvasdiv {
+	width: 804;
+	height: 610;
+	position: absolute;
+	left: 7%;
+	/* opacity: 0.9; */
+	background-color: #ffffff;
+	/* color: #ffffff; */
+	display: inline-block;
+	border: 1px solid red;
+	z-index: 990;
+	/* width: 804px; height: 604px; position:relative; left:25%; border: 1px solid red; */
+}
+
+div#topleftdiv {
+	display: inline-block;
+	position: absolute;
+	top: 0;
+	left: 0%;
+	right: 0;
+	bottom: 0%;
+	height: 60%;
+	width: 30%;
+	background-color: #98fb98;
+	color: #000000;
+	font-size: 16px;
+	text-align: center;
+	opacity: 0.9;
+	/*  margin: 10px; */
+}
+
+div#bottomleftdiv {
+	display: inline-block;
+	position: absolute;
+	top: 60%;
+	left: 0%;
+	right: 0;
+	bottom: 0%;
+	height: 40%;
+	width: 30%;
+	background-color: #ffff80;
+	color: #cc0000;
+	font-size: 16px;
+	text-align: center;
+	opacity: 0.9;
+}
+
+div#toprightdiv {
+	display: inline-block;
+	position: absolute;
+	top: 0;
+	left: 30%;
+	right: 0;
+	bottom: 0%;
+	height: 55%;
+	width: 70%;
+	background-color: #ffffff;
+	color: #000000;
+	font-size: 16px;
+	text-align: center;
+	/* opacity: 0.9; */
+	margin: 50px auto;
+}
+
+div#bottomrightdiv {
+	display: inline-block;
+	position: absolute;
+	top: 60%;
+	left: 30%;
+	right: 0;
+	bottom: 0%;
+	height: 40%;
+	width: 70%;
+	background-color: #0000ff;
+	color: #ffffff;
+	font-size: 16px;
+	text-align: center;
+	opacity: 0.5;
+}
+
+div#origin {
+	display: inline-block;
+	position: absolute;
+	display: inline-block;
+}
+
+canvas#toplayer {
+	z-index: 999;
+	position: absolute;
+	left: 73px;
+	top: 4px;
+	height: 596px;
+	width: 796px;
+	border: 0px green;
+	/* background-color: #ffffe0; 
+  opacity: 0.5;  */
+}
+</style>
+
+<script src="https://js.pusher.com/4.1/pusher.min.js"></script>
+<script>
+    // var pusher = new Pusher('68b839b2025fea142c8d', { Maithu
+    var pusher = new Pusher('6dfd5a42b2dabf5e25fe', {
+      wsHost: 'ws.pusherapp.com',
+      httpHost: 'sockjs.pusher.com',
+      encrypted: true
+    });
+
+    // Enable pusher logging - don't include this in production
+    Pusher.logToConsole = true;
+
+  // Master Frame Size which comprisess of 4 quadrants.
+  // This is base <div> attached to <body> of the HTML Page.
+
+// Used for 4 quadrant Canvas.
+const canvasWidth = 400;
+const canvasHeight = 300;
+
+// Pixel per 1 cm;
+const pixelTocm = 37.795275590551;
+
+/**************************************************/
+function addElement() {
+  var newDiv = document.createElement("div");
+  var currentDiv = document.getElementById("Quadrant_1");
+
+  document.body.insertBefore(newDiv, currentDiv);
+}
+/**************************************************/
+function translateXY(quad) {
+  let ctx = quad.ctx;
+
+  switch (quad.quadrantNo) {
+    case 1:
+      // Cartesian Q2. Move (x,y) from top left and
+      // scale x,y down, right side.
+      ctx.translate(canvasWidth, canvasHeight);
+      ctx.scale(-1, -1);
+      break;
+    case 2: // Cartesian Q1. Move (0,y) from top left and scale y down.
+      ctx.translate(0, canvasHeight);
+      ctx.scale(1, -1);
+      break;
+    case 3: // Cartesian Q3. Move (x,0) from top left and scale x right side.
+      ctx.translate(canvasWidth, 0);
+      ctx.scale(-1, 1);
+      break;
+    case 4: // Cartesian Q4. No Movement.
+      break;
+  }
+}
+/**************************************************/
+function drawCartesianGrid(quad) {
+  let ctx = quad.ctx;
+
+  ctx.save();
+  translateXY(quad);
+  ctx.restore();
+}
+
+/**************************************************/
+function drawColorGradient(quad) {
+  let ctx = quad.ctx;
+  let pno;
+
+  ctx.save();
+
+  // For debugging and see color gradient.
+
+    /*
+   translateXY(quad);
+   let grd=ctx.createLinearGradient(0,0,175,50);
+   grd.addColorStop(0,"#E05D1B");
+   grd.addColorStop(1,"#00FF00");
+   ctx.fillStyle=grd;
+    */
+
+  ctx.fillStyle = "#FFFFFF";
+  ctx.fillRect(0, 0, canvasWidth, canvasHeight);
+  ctx.restore();
+
+  ctx.font = "30px Comic Sans MS";
+  ctx.fillStyle = "rgba(0, 0, 0, 0.9)"; // Quadrant naming in black.
+
+  if ((quad.quadrantNo == 1) || (quad.quadrantNo == 3)) {
+    ctx.textAlign = "right";
+  } else {
+    ctx.textAlign = "left";
+  }
+
+  switch (quad.quadrantNo) {
+    case 1:
+      pno = 2;
+            x =  (0.2*quad.id.width);
+            y =  (0.2*quad.id.height);
+      break;
+    case 2:
+      pno = 1;
+            x =  (0.8*quad.id.width);
+            y =  (0.2*quad.id.height);
+      break;
+    case 3:
+      pno = quad.quadrantNo;
+            x =  (0.2*quad.id.width);
+            y =  (0.8*quad.id.height);
+            break;
+    case 4:
+      pno = quad.quadrantNo;
+            x =  (0.8*quad.id.width);
+            y =  (0.8*quad.id.height);
+  }
+
+  ctx.fillText("Q" + pno, x, y);
+    console.log("QText = ", pno, x, y);
+}
+
+/**************************************************/
+function drawCircle(quad, color) {
+  let ctx = quad.ctx;
+  centerX = quad.id.width/2;
+  centerY = quad.id.height/2;
+
+  // ctx.style.display="inline";
+  ctx.save();
+  translateXY(quad);
+
+  ctx.beginPath();
+  ctx.arc(centerX-100, centerY-50, 100, 0, 2 * Math.PI, false);
+  ctx.fillStyle = "rgba(255, 255, 255, 0.9)";
+  ctx.fill();
+  ctx.lineWidth = 1;
+  // ctx.strokeStyle = "red";
+  ctx.strokeStyle = color;
+  ctx.stroke();
+  ctx.closePath();
+  ctx.restore();
+}
+
+/************************************************/        
+function drawTriangle(quad, color) {
+   let ctx = quad.ctx;
+   ctx.save();
+   translateXY(quad);
+   ctx.strokeStyle = color;
+   
+   ctx.beginPath();
+   ctx.moveTo(50, 50);   // (x1,y1)
+   ctx.lineTo(250, 250); // (x1,y1) to (x2,y2) - Draw the Diagonal
+
+   ctx.moveTo(250, 250); // (x2,y2)
+   ctx.lineTo(250, 50);  // (x2,y2) to (x2,y3) - Opposite Side.
+
+   ctx.moveTo(250, 50);  // (x2,y3)
+   ctx.lineTo(50, 50);   // (x2,y3) to (x1,y1) - Base Side.
+
+   ctx.fill();
+   ctx.stroke();
+   ctx.closePath();
+   ctx.restore();
+}
+
+function drawSquare(quad, color) {
+   let ctx = quad.ctx;
+   ctx.save();
+   translateXY(quad);
+   ctx.strokeStyle = color;
+   
+   ctx.beginPath();
+   ctx.moveTo(50, 50);    // (x1,y1)
+   ctx.lineTo(50, 250);   // (x1,y1) to (x2,y2) - Draw the Diagonal
+
+   ctx.moveTo(50, 250);   // (x2,y2)
+   ctx.lineTo(250, 250);  // (x2,y2) to (x3,y3) - Opposite Side.
+
+   ctx.moveTo(250, 250);  // (x3,y3)
+   ctx.lineTo(250, 50);   // (x3,y3) to (x4,y4) - Base Side.
+
+   ctx.moveTo(250, 50);  // (x4,y4)
+   ctx.lineTo(50, 50);   // (x4,y4) to (x1,y1) - Base Side.
+
+   ctx.stroke();
+   ctx.closePath();
+	 ctx.restore();
+}
+
+function drawRectangle(quad, color) {
+   let ctx = quad.ctx;
+   ctx.save();
+   translateXY(quad);
+   ctx.strokeStyle = color;
+   
+   ctx.beginPath();
+   ctx.moveTo(50, 50);    // (x1,y1)
+   ctx.lineTo(350, 50);   // (x1,y1) to (x2,y2) - Draw the Diagonal
+
+   ctx.moveTo(350, 50);   // (x2,y2)
+   ctx.lineTo(350, 200);  // (x2,y2) to (x3,y3) - Opposite Side.
+
+   ctx.moveTo(350, 200);  // (x3,y3)
+   ctx.lineTo(50, 200);   // (x3,y3) to (x4,y4) - Base Side.
+
+   ctx.moveTo(50, 200);  // (x4,y4)
+   ctx.lineTo(50, 50);   // (x4,y4) to (x1,y1) - Base Side.
+
+   ctx.stroke();
+   ctx.closePath();
+	 ctx.restore();
+}
+
+function drawPentagon(quad, color) {
+   let ctx = quad.ctx;
+   ctx.save();
+   translateXY(quad);
+   ctx.strokeStyle = color;
+   
+   ctx.beginPath();
+
+   // Pentagon
+   var numberOfSides = 5, size = 100, Xcenter = 150, Ycenter = 150;
+   ctx.moveTo (Xcenter +  size * Math.cos(0), Ycenter +  size *  Math.sin(0));          
+   for (var i = 1; i <= numberOfSides;i += 1) {
+    ctx.lineTo (Xcenter + size * Math.cos(i * 2 * Math.PI / numberOfSides), Ycenter + size * Math.sin(i * 2 * Math.PI / numberOfSides));
+}
+
+    ctx.stroke();
+    ctx.closePath();
+	  ctx.restore();
+}
+
+function drawHexagon(quad, color) {
+   let ctx = quad.ctx;
+   ctx.save();
+   translateXY(quad);
+   ctx.strokeStyle = color;
+   
+   ctx.beginPath();
+
+   // Hexagon
+   var numberOfSides = 6, size = 100, Xcenter = 150, Ycenter = 150;
+   ctx.moveTo (Xcenter +  size * Math.cos(0), Ycenter +  size *  Math.sin(0));          
+   for (var i = 1; i <= numberOfSides;i += 1) {
+    ctx.lineTo (Xcenter + size * Math.cos(i * 2 * Math.PI / numberOfSides), Ycenter + size * Math.sin(i * 2 * Math.PI / numberOfSides));
+}
+    ctx.stroke();
+    ctx.closePath();
+	  ctx.restore();
+}
+/**************************************************/
+function drawTopLayer(ctx3) {
+  ctx3.clearRect(0, 0, toplayer.width, toplayer.height);
+  ctx3.strokeStyle = 'green';
+  ctx3.lineWidth   = 1;
+    ctx3.fillStyle = "black";
+
+    /* Draw the rectangle box for cartesian coordinates */
+  ctx3.strokeRect(0, 0, toplayer.width, toplayer.height);
+
+    /* Draw X-Axis */
+  ctx3.fillRect(0, (toplayer.height / 2), toplayer.width, 1);
+
+    /* Draw Y-Axis */
+  ctx3.fillRect((toplayer.width / 2), 0, 1, toplayer.height);
+
+  // ctx3.fillStyle = "#444444";
+  // ctx3.save();
+  // ctx3.translate(200, 200);
+  // ctx3.rotate(x / 20);
+  // ctx3.fillRect(0, 0, 700, 500);
+  // ctx3.restore();
+}
+/**************************************************/
+function Cartesian(qno, name, id) {
+  this.name = name;
+  this.quadrantNo = qno;
+  this.id = id;
+  this.ctx = id.getContext("2d");
+  this.id.width = canvasWidth;
+  this.id.height = canvasHeight;
+  this.ctx.lineWidth = 0; // Canvas Border Width;
+  id.style.zIndex = 1;
+}
+/**************************************************/
+function drawAxisXGrid(ctx3, nopts) {
+  // Draw grids on positive x-axis - starting on origin (1/2 width)
+
+  ctx3.drawVerticalLine = function(left, top, height, color){
+         this.fillStyle=color;
+         this.fillRect(left, top, 0.7, height);
+  };
+
+  for (i = 1; i <= nopts; i++) {
+     var x = toplayer.width/2;
+     var y = toplayer.height/2;
+
+     ctx3.drawVerticalLine( x-(i*40), y-8,  16, "red");
+     ctx3.drawVerticalLine( x+(i*40), y-8,  16, "red");
+  }
+}
+/**************************************************/
+function drawAxisYGrid(ctx3, nopts) {
+     ctx3.drawHorizontalLine = function(left, top, width, color){
+       this.fillStyle=color;
+         this.fillRect(left, top, width, 0.7);
+     }
+
+  // Draw grids on positive y-axis - starting on origin (1/2 height)
+  for (i = 1; i <= nopts; i++) {
+     var x = toplayer.width/2;
+     var y = toplayer.height/2;
+     ctx3.drawHorizontalLine ( x-8, y-(i*20),  16, "red");
+     ctx3.drawHorizontalLine ( x-8, y+(i*20),  16, "red");
+  }
+}
+/**************************************************/
+function drawtopLayer() {
+   // Draw the rectangle and axes
+   let topid = document.getElementById("toplayer");
+   let ctxtop = topid.getContext("2d");
+
+   drawTopLayer(ctxtop);
+   drawAxisXGrid(ctxtop, 3);
+   drawAxisYGrid(ctxtop, 3);
+}
+/**************************************************/
+var quadrants = {};
+var quadrantOrder = [1, 2, 3, 4];
+var cyclic_x = 1;
+
+function clearquadrants()
+{
+   for (let i of quadrantOrder) {
+      let q1 = quadrants[i];
+      q1.ctx.clearRect(0, 0, q1.id.width, q1.id.height);
+   }
+}
+
+/* 
+var myVar = setInterval(myTimer, 3000);
+function myTimer() {
+     if ( cyclic_x > 4) {
+        clearquadrants();
+        cyclic_x = 1;
+     } else {
+        let quad = quadrants[cyclic_x];
+        let ctx = quad.ctx;
+        drawCircle(quad, "red");
+
+        cyclic_x++;
+     }
+} */
+
+// allocate and store quadrant details.
+for (let i of quadrantOrder) {
+  let qxname = "Quadrant_" + i;
+  let qxid = document.getElementById(qxname);
+  quadrants[i] = new Cartesian(i, qxname, qxid);
+}
+
+drawtopLayer();
+
+for (let i of quadrantOrder) {
+    drawColorGradient(quadrants[i]);
+}
+
+
+// document.getElementById("BaseCanvas").style.zIndex = "0";
+
+let parent = quadrants[1].id.parentNode;
+let children = parent.children;
+console.log("Parent  = " + parent.tagName, parent.id);
+
+for (i = 0; i < parent.children.length; i++) {
+  console.log("Name = " + parent.children[i].tagName, parent.children[i].id);
+}
+
+function placeObject(shape, no, color) {
+        // alert(shape  + " " + no  + " " +  color);
+        let quad = quadrants[no];
+				quad.ctx.clearRect(0, 0, quad.id.width, quad.id.height)
+				switch (shape) {
+				case "circle": 
+              drawCircle(quad, color);
+				      break;
+				case "square": 
+              drawSquare(quad, color);
+				      break;
+				case "rectangle": 
+              drawRectangle(quad, color);
+				      break;
+				case "triangle": 
+              drawTriangle(quad, color);
+				      break;
+				case "pentagon": 
+              drawPentagon(quad, color);
+				      break;
+				case "hexagon": 
+              drawHexagon(quad, color);
+				      break;
+				}
+}
+
+function getPage(type, loc, no) {
+                alert(typea +  " " +  no  + " " + loc);
+}
+
+
+function  process_alexa(data) {
+            var obj = JSON.parse(data.message); 
+
+            switch ( obj.actions.toLowerCase() ) {
+                    case 'draw': 
+                    var n = 0;
+                    if (obj.number == 1) { n = 2; } if (obj.number == 2 ) { n = 1; }
+                    if (obj.number == 3) { n = 3; } if (obj.number == 4 ) { n = 4; }
+                        placeObject(obj.shapes, n, obj.colors);
+                    break;
+                    case 'show': 
+                    case 'get': 
+                        getPage(obj.type, obj.location, obj.number);
+                    break;
+                    case 'send': 
+                  default:
+                    alert("Cannot See the function");
+
+                }
+}
+
+  var channel = pusher.subscribe('my-channel');
+  channel.bind('my-event', function(data) { process_alexa(data); });
+
+	// drawTriangle(quadrants[2], "red");
+	// drawSquare(quadrants[2], "red");
+  // drawRectangle(quadrants[2], "red");
+	// drawPentagon(quadrants[2], "red");
+	// drawHexagon(quadrants[2], "red");
+</script>
+

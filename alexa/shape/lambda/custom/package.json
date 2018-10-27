@@ -1,0 +1,11 @@
+{
+  "name": "skill-sample-nodejs-shape-world",
+  "version": "1.0.0",
+  "description": "Hello shape sample skill",
+  "scripts": {
+    "test": "echo \"Error: no test specified\" && exit 1"
+  },
+  "dependencies": {
+    "alexa-sdk": "^1.0.0"
+  }
+}
