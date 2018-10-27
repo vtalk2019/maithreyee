@@ -24,7 +24,7 @@ The image below indicates the common utterance equation that has to be followed 
 
 ### Setup 
 
-There are 3 macro areas to setup the entire flow before it will work.
+There are 6 macro areas to setup the entire flow before it will work.
 
 1. Initial design of alexa skill with clear focus on utterances to accomplish this task
 2. Enable AWS lambda system in the backend to intercept data from Alexa Voice Engine
