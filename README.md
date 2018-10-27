@@ -40,7 +40,7 @@ There are 3 macro areas to setup the entire flow before it will work.
 We all know teaching or learning environments are generally quite and suitable for monologues specifically in classrooms.
 Given artificial intelligence and Machine Learning engines are getting smarter, what if they can translate our ISBN books to direct code that draws those pictures and we can visualize them in classrooms. What if we can store all ISBN books in S3 storage and drive the entire flow based on book #, page # and problem # to index shapes and objects using alexa devices as input devices? With voice signatures for teachers and associating with classrooms, one can offer business solutions using subscription model to school districts and operate the service using lambda and alexa devices sprinkled in classrooms.
 
-#### Amazon Lambda setup for Shape Lesson
+#### Amazon Lambda setup for Alexa Shape Lesson
 
 1. ask_cli init
 2. copy index.js file into custom/ directory
