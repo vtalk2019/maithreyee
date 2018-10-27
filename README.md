@@ -59,7 +59,7 @@ Given artificial intelligence and Machine Learning engines are getting smarter, 
 4. upload the zip file by creating lambda function from here: https://console.aws.amazon.com/lambda/home?region=us-east-1#/functions - These are standard AWS lambda process and nothing fancy to get this working.
 
 
-# Next Steps (Amazon Echo -or- Google Home -or- other voice enabled devices)
+### Next Steps (Amazon Echo -or- Google Home -or- other voice enabled devices)
 
 * I am still a high school student and would like to pursue automating this process using ML/NLP and generate code for display.
 * The potential to scale and operate the service requires professional touch along with man power to make it industrial strength product for mass deployment.
@@ -67,5 +67,6 @@ Given artificial intelligence and Machine Learning engines are getting smarter, 
 * Multiscreen devices exist and environments are different for interaction which brings in collaboration, conferencing and ability to broadcast solutions to groups 
 * I do feel potential exist for this product for mainstream teaching community provided ML/NLP along with voice engines improve their offerings to scan books and convert them to code that can draw pictures from words beyond shapes alone.
 * This will open up new markets for voice devices and become ubiquitous in teaching environments for visualizing problems and solutions.
+* Imagine scanning books through ML scanner and generating JS scripts. One can store the output in Amazon S3 indexed by ISBN catalog as a repository for lamda engines to interact with httpserver. *Amazon can make this a free offering to schools worldwide.*
 
 
