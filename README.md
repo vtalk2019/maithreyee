@@ -8,6 +8,13 @@ We are always surrounded by objects that has shapes (e.g Circle, Rectangle, Squa
 <img src="/images/ShapesLesson.png" alt="ShapeLesson"/>
 <img src="/images/ArchitecturalDiagram.png" alt="Architecture"/>
 
+### Alexa Shape Interaction Model
+The image below indicates the common utterance equation that has to be followed to interact with Alexa devices like Echo which are located in the classroom. This is the core Man-Machine interface and foundation for user interaction that has to be followed.
+
+<img src="/images/EchoTalkIntentSampleUtterances1.PNG" alt="Shape Interactive Model 1"/>
+<img src="/images/EchoTalkIntentSampleUtterances2.PNG" alt="Shape Interactive Model 2"/>
+
+
 ### Setup 
 
 There are 3 macro areas to setup the entire flow before it will work.
