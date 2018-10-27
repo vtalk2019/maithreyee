@@ -26,9 +26,13 @@ The image below indicates the common utterance equation that has to be followed 
 
 There are 3 macro areas to setup the entire flow before it will work.
 
-1. Local (Client) http server using npm/node.js - This is where the html/js file reside for display. This file also registers with push notification server to receive backend commands/instructions. 
-2. Alex skillset design - This is your skillset using Alexa deveoper console.
-3. Backend Lambda that has to be uploaded and connected with Alexa skillset (Lambda to Alexa Skillset).
+1. Initial design of alexa skill with clear focus on utterances to accomplish this task
+2. Enable AWS lambda system in the backend to intercept data from Alexa Voice Engine
+3. Create plumbing to a push notification service to communicate with front end display which is usually a TV or computer for student or class room.
+4. Local web server that has registered with push notification service to receive back-end data stream for further processing in the confines of cartesian coordinate system.
+5. Integrate all 4 subsystems (Alexa Design/Engine, Lambda, Push Notification Service and Frontend display web server using html/css/Javascript)
+6. I am using node.js for AWS lambda, html/css/javascript language to make my demo a reality
+
 
 #### Http Server Setup
 
