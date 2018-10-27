@@ -1,7 +1,7 @@
 ## Alexa Shapes - A prototype from Maithreyee Vatsan@Lynbrook High School
 
 ### Introduction 
-We are always surrounded by objects that has shapes (e.g Circle, Rectangle, Square). There are approximately 20-25 popular geometric shapes. Amazon Alexa and Google Voice are Voice driven devices that align with one of the human sensory organs (ear). The 5 sense organs are eyes, ears, tongue, skin, and nose. What if we can enrich our interaction with shapes using eyes (for display) and ears (for feedback) and mouth for commanding Alexa? Alexa Shapes will show how the Amazon Alexa can be used to draw shapes and align with ISBN numbers for conics, shapes or any visual representation in cartesian coordinate system.
+We are always surrounded by objects that has shapes (e.g Circle, Rectangle, Square). There are approximately 20-25 popular geometric shapes. Amazon Alexa and Google Home are Voice driven devices that align with one of the human sensory organs (ear). The 5 sense organs are eyes, ears, tongue, skin, and nose. What if we can enrich our interaction with shapes using eyes (for display) and ears (for feedback) and mouth for commanding Alexa? Alexa Shapes will show how the Amazon Alexa can be used to draw shapes and align with ISBN numbers for conics, shapes or any visual representation in cartesian coordinate system.
 
 ### An Amazon Alexa skill set to interact with Shapes in a classroom setting.
 
