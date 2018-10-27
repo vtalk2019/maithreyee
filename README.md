@@ -21,7 +21,7 @@ There are 3 macro areas to setup the entire flow before it will work.
 1. install npm
 2. npm install http-server -g
 3. http-server 
-4. from browser, goto http://localhost:8080/c3.html
+4. from browser, goto http://localhost:8080/mx3.html
 
 #### Amazon Alexa Developer console
 
