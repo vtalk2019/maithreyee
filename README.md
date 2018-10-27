@@ -6,7 +6,7 @@ We are always surrounded by objects that has shapes (e.g Circle, Rectangle, Squa
 ### An Amazon Alexa skill set to interact with Shapes in a classroom setting.
 
 <img src="/images/ShapesLesson.png" alt="ShapeLesson"/>
-<img src="/images/ArchitecturalDiagram.png" alt="Architecture"/>
+<img src="/images/ArchitecturalDiagram2.png" alt="Architecture"/>
 
 ### Alexa Shape Interaction Model
 The image below indicates the common utterance equation that has to be followed to interact with Alexa devices like Echo which are located in the classroom. This is the core Man-Machine interface and foundation for user interaction that has to be followed.
