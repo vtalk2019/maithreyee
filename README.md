@@ -34,12 +34,15 @@ There are 6 macro areas to setup the entire flow before it will work.
 6. I am using node.js for AWS lambda, html/css/javascript language to make my demo a reality
 
 
-#### Http Server Setup
+#### Http Server Setup (on MAC)
 
-1. install npm
-2. npm install http-server -g
-3. http-server 
-4. from browser, go to http://localhost:8080/mx3.html
+1. ruby -e "$(curl -fsSL https://raw.githubusercontent.com/Homebrew/install/master/install)"
+2. brew install node
+3. node -v
+4. npm -v
+5. npm install http-server -g
+6. http-server (start this in the directory where mx3.html is located)
+7. From browser, go do http://localhost:8080/mx3.html - you should see 4 quadrants + shapes come here when the entire flow works.
 
 #### Amazon Alexa Developer console
 
