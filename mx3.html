@@ -121,8 +121,8 @@ canvas#toplayer {
 
 <script src="https://js.pusher.com/4.1/pusher.min.js"></script>
 <script>
-    // var pusher = new Pusher('68b839b2025fea142c8d', { Maithu
-    var pusher = new Pusher('6dfd5a42b2dabf5e25fe', {
+    // var pusher = new Pusher('COMMENTED_ID', {
+    var pusher = new Pusher('YOUD_REGISTER_ID_GOES_HERE', {
       wsHost: 'ws.pusherapp.com',
       httpHost: 'sockjs.pusher.com',
       encrypted: true
@@ -499,26 +499,26 @@ function placeObject(shape, no, color) {
         // alert(shape  + " " + no  + " " +  color);
         let quad = quadrants[no];
 				quad.ctx.clearRect(0, 0, quad.id.width, quad.id.height)
-				switch (shape) {
-				case "circle": 
+	switch (shape) {
+	   case "circle": 
               drawCircle(quad, color);
-				      break;
-				case "square": 
+	      break;
+	   case "square": 
               drawSquare(quad, color);
-				      break;
-				case "rectangle": 
+	      break;
+	   case "rectangle": 
               drawRectangle(quad, color);
-				      break;
-				case "triangle": 
+	      break;
+	   case "triangle": 
               drawTriangle(quad, color);
-				      break;
-				case "pentagon": 
+	      break;
+	   case "pentagon": 
               drawPentagon(quad, color);
-				      break;
-				case "hexagon": 
+	      break;
+	   case "hexagon": 
               drawHexagon(quad, color);
-				      break;
-				}
+	      break;
+	}
 }
 
 function getPage(type, loc, no) {
@@ -552,7 +552,7 @@ function  process_alexa(data) {
 
 	// drawTriangle(quadrants[2], "red");
 	// drawSquare(quadrants[2], "red");
-  // drawRectangle(quadrants[2], "red");
+        // drawRectangle(quadrants[2], "red");
 	// drawPentagon(quadrants[2], "red");
 	// drawHexagon(quadrants[2], "red");
 </script>
