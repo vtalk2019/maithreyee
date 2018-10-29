@@ -498,27 +498,27 @@ for (i = 0; i < parent.children.length; i++) {
 function placeObject(shape, no, color) {
         // alert(shape  + " " + no  + " " +  color);
         let quad = quadrants[no];
-				quad.ctx.clearRect(0, 0, quad.id.width, quad.id.height)
-				switch (shape) {
-				case "circle": 
-              drawCircle(quad, color);
-				      break;
-				case "square": 
-              drawSquare(quad, color);
-				      break;
-				case "rectangle": 
-              drawRectangle(quad, color);
-				      break;
-				case "triangle": 
-              drawTriangle(quad, color);
-				      break;
-				case "pentagon": 
-              drawPentagon(quad, color);
-				      break;
-				case "hexagon": 
-              drawHexagon(quad, color);
-				      break;
-				}
+	      // quad.ctx.clearRect(0, 0, quad.id.width, quad.id.height)
+	      switch (shape) {
+		case "circle": 
+                   drawCircle(quad, color);
+	           break;
+	        case "square": 
+                   drawSquare(quad, color);
+		   break;
+	        case "rectangle": 
+                   drawRectangle(quad, color);
+	           break;
+		case "triangle": 
+                   drawTriangle(quad, color);
+		   break;
+		case "pentagon": 
+                   drawPentagon(quad, color);
+		   break;
+		case "hexagon": 
+                   drawHexagon(quad, color);
+		   break;
+	    }
 }
 
 function getPage(type, loc, no) {
