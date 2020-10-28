@@ -56,7 +56,7 @@ There are 6 macro areas to setup the entire flow before it will work.
 4. upload the zip file by creating lambda function from here: https://console.aws.amazon.com/lambda/home?region=us-east-1#/functions - These are standard AWS lambda process and nothing fancy to get this working.
 
 #### Business Model: How can we use this tool to our advantage?
-We all know teaching or learning environments are generally quite and suitable for monologues specifically in classrooms.
+We all know teaching or learning environments are generally quiet and suitable for monologues specifically in classrooms.
 Given artificial intelligence and Machine Learning engines are getting smarter, what if they can translate our ISBN books to direct code that draws those pictures and we can visualize them in classrooms. What if we can store all ISBN books in S3 storage and drive the entire flow based on book number, page number and problem number to index shapes and objects using alexa devices as input devices? With voice signatures for teachers and associating with classrooms, one can offer business solutions using subscription model to school districts and operate the service using lambda and alexa devices sprinkled in classrooms.
 
 ### Next Steps (Amazon Echo -or- Google Home -or- other voice enabled devices)
